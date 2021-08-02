@@ -9,10 +9,11 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="mb-4">New Article</h1>
-            <form action="/articles" method="POST">
-                <%- include('_form_fields') %>
-            </form>
+            <h1 class="mb-1"><%= article.title %></h1>
+            <div class="text-muted mb-2">
+                <%= article.article.toLocaleDateString() %>
+            </div>
+            <a href="/">All Article</a>
         </div>
     </body>
 </html>
