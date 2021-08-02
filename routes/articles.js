@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
       markdown: req.body.markdown
    })
    try{
-      article = await article.save()
+      article = article.save()
       res.redirect(`/article/${article.id}`)
    } catch (e) {
       res.render('articles/new', { article: article})

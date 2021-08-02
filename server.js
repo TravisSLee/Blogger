@@ -1,6 +1,6 @@
 const express = require('express')
 const articleRouter = require('./routes/articles')
-const Article = require('./models/aricle')
+const Article = require('./models/article')
 const app = express()
 const mongoose = require('mongoose')
 

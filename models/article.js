@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const marked = require('marked')
+const slugify = require('slugify')
 
 const articlesSchema = new mongoose.Schema({
     title: {
@@ -15,5 +17,24 @@ const articlesSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    slug: {
+        type: String,
+        required: true,
+        unique: true
+      }
 })
+
+articleSchema.pre('validate', function(next) {
+    if (this.title) {
+      this.slug = slugify(this.title, { lower: true, strict: true })
+    }
+  
+    if (this.markdown) {
+      this.sanitizedHtml = dompurify.sanitize(marked(this.markdown))
+    }
+  
+    next()
+  })
+  
+  module.exports = mongoose.model('Article', articleSchema)
