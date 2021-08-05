@@ -26,6 +26,7 @@ const articlesSchema = new mongoose.Schema({
 })
 
 articleSchema.pre('validate', function(next) {
+  //validations and before attributes article upon create and edit
     if (this.title) {
       this.slug = slugify(this.title, { lower: true, strict: true })
     }
