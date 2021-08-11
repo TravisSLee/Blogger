@@ -7,7 +7,7 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:sluf', async (req, res) => {
-   const article = await Article.find({slug: req.params.slug})
+   const article = await Article.findOne({slug: req.params.slug})
    if (article == null) res.redirect('/')
    res.render('article/show', { article: article })
 })
@@ -20,10 +20,15 @@ router.post('/', (req, res) => {
    })
    try{
       article = article.save()
-      res.redirect(`/article/${article.id}`)
+      res.redirect(`/article/${article.slug}`)
    } catch (e) {
       res.render('articles/new', { article: article})
    }
    
+})
+
+router.delete('/:id', async (req, res) => {
+   await Article.finfByIdAndDelete(req.params.id)
+   res.redirect('/')
 })
 module.exports = router
