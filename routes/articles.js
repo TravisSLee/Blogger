@@ -6,8 +6,8 @@ router.get('/new', (req, res) => {
    res.render('articles/new', { article: new Article() } ) 
 })
 
-router.get('/:id', async (req, res) => {
-   const article = await Article.findById(req.params.id)
+router.get('/:sluf', async (req, res) => {
+   const article = await Article.find({slug: req.params.slug})
    if (article == null) res.redirect('/')
    res.render('article/show', { article: article })
 })

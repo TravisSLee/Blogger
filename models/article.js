@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const marked = require('marked')
 const slugify = require('slugify')
 
-const articlesSchema = new mongoose.Schema({
+const articleSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
